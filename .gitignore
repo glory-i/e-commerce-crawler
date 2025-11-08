@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+.venv/
+env/
+venv/
+
+# Environment variables
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# Logs and data
+*.log
+*.csv
+*.json
+*.db
+.DS_Store
+
+#tests
+test_pagination.py
+test_async.py
+test_retry.py
