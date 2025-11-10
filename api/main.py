@@ -9,7 +9,7 @@ from slowapi.errors import RateLimitExceeded
 from contextlib import asynccontextmanager
 import logging
 
-from api.routes import books_router, changes_router, health_router
+from api.routes import books_router, changes_router, health_router, api_keys_router
 from api.dependencies import limiter
 from config.api_config import default_api_config
 
@@ -69,6 +69,8 @@ app.add_middleware(
 app.include_router(health_router)
 app.include_router(books_router)
 app.include_router(changes_router)
+app.include_router(api_keys_router)  
+
 
 
 @app.get("/", tags=["Root"])

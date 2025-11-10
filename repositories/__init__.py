@@ -19,6 +19,15 @@ from .changelog_repository import (
     create_changelog_indexes,
 )
 
+from .api_key_repository import (
+    save_api_key, 
+    get_api_key_by_hash, 
+    get_all_api_keys,
+    deactivate_api_key, 
+    create_api_key_indexes
+)
+
+
 
 __all__ = [
     'save_book_to_db',
@@ -35,5 +44,11 @@ __all__ = [
     'get_field_change_statistics',
     'create_changelog_indexes',
     'get_all_book_urls',
-    'count_books'
+    'count_books',
+    'save_api_key', 
+    'get_api_key_by_hash',
+    'get_all_api_keys',
+    'deactivate_api_key',
+    'create_api_key_indexes'
+
 ]
