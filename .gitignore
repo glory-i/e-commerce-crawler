@@ -31,3 +31,14 @@ test_retry.py
 reports/output/
 *.json
 *.csv
+
+
+# Pytest
+.pytest_cache/
+htmlcov/
+.coverage
+*.pyc
+__pycache__/
+
+
+old_tests/

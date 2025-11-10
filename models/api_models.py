@@ -1,10 +1,9 @@
 """
 API response models
 """
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from typing import Optional, List, Any
 from datetime import datetime
-
 
 class APIBookResponse(BaseModel):
     """Response model for book data"""
@@ -21,7 +20,7 @@ class APIBookResponse(BaseModel):
     source_url: str
     crawled_at: datetime
     
-    class Config:
+    model_config = ConfigDict(
         json_schema_extra = {
             "example": {
                 "id": "507f1f77bcf86cd799439011",
@@ -38,6 +37,7 @@ class APIBookResponse(BaseModel):
                 "crawled_at": "2025-11-08T14:30:00+01:00"
             }
         }
+    )
 
 
 class PaginatedResponse(BaseModel):
@@ -48,7 +48,7 @@ class PaginatedResponse(BaseModel):
     total_pages: int = Field(..., description="Total number of pages")
     data: List[Any] = Field(..., description="Array of items")
     
-    class Config:
+    model_config = ConfigDict(
         json_schema_extra = {
             "example": {
                 "total": 1000,
@@ -58,6 +58,7 @@ class PaginatedResponse(BaseModel):
                 "data": []
             }
         }
+   )
 
 
 class BookListResponse(BaseModel):
@@ -78,7 +79,7 @@ class APIChangeResponse(BaseModel):
     changed_at: datetime
     detection_run_id: str
     
-    class Config:
+    model_config = ConfigDict(
         json_schema_extra = {
             "example": {
                 "book_source_url": "https://books.toscrape.com/catalogue/book_123/index.html",
@@ -94,6 +95,7 @@ class APIChangeResponse(BaseModel):
                 "detection_run_id": "run_2025-11-08_02:00:00"
             }
         }
+    )
 
 
 class ChangeListResponse(BaseModel):
@@ -109,12 +111,13 @@ class ErrorResponse(BaseModel):
     """Error response model"""
     detail: str
     
-    class Config:
+    model_config = ConfigDict(
         json_schema_extra = {
             "example": {
                 "detail": "Invalid API key"
             }
         }
+    )
 
 
 class HealthResponse(BaseModel):
@@ -125,7 +128,7 @@ class HealthResponse(BaseModel):
     total_books: int
     total_changes: int
     
-    class Config:
+    model_config = ConfigDict(
         json_schema_extra = {
             "example": {
                 "status": "healthy",
@@ -135,3 +138,4 @@ class HealthResponse(BaseModel):
                 "total_changes": 25
             }
         }
+    )

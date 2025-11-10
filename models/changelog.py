@@ -1,7 +1,7 @@
 """
 Pydantic models for change log
 """
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from typing import Optional, Any
 from datetime import datetime, timezone, timedelta
 from enum import Enum
@@ -20,13 +20,14 @@ class FieldChange(BaseModel):
     old: Any = Field(..., description="Old value before change")
     new: Any = Field(..., description="New value after change")
     
-    class Config:
+    model_config = ConfigDict(
         json_schema_extra = {
             "example": {
                 "old": 51.77,
                 "new": 45.00
             }
         }
+    )
 
 
 class ChangeLog(BaseModel):
@@ -50,7 +51,7 @@ class ChangeLog(BaseModel):
         description="Unique ID for the scheduler run that detected this change"
     )
     
-    class Config:
+    model_config = ConfigDict(
         json_schema_extra = {
             "example": {
                 "book_source_url": "https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html",
@@ -70,6 +71,7 @@ class ChangeLog(BaseModel):
                 "detection_run_id": "run_2025-11-08_02:00:00"
             }
         }
+    )
 
 
 class ChangeLogCreate(BaseModel):
@@ -112,7 +114,7 @@ class SchedulerRunSummary(BaseModel):
     errors: int
     error_details: Optional[list[str]] = None
     
-    class Config:
+    model_config = ConfigDict(
         json_schema_extra = {
             "example": {
                 "run_id": "run_2025-11-08_02:00:00",
@@ -133,3 +135,4 @@ class SchedulerRunSummary(BaseModel):
                 "error_details": None
             }
         }
+    )
