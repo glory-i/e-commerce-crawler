@@ -26,3 +26,8 @@ venv/
 test_pagination.py
 test_async.py
 test_retry.py
+
+# Reports
+reports/output/
+*.json
+*.csv
