@@ -34,7 +34,7 @@ class ChangeLog(BaseModel):
     Change log entry for book changes
     One entry per book per detection run
     """
-    book_id: str = Field(..., description="Book source URL (unique identifier)")
+    book_source_url: str = Field(..., description="Book source URL (unique identifier)")
     book_name: str = Field(..., max_length=500, description="Book name for readability")
     change_type: ChangeType = Field(..., description="Type of change: added or updated")
     changes: Optional[dict[str, FieldChange]] = Field(
@@ -53,7 +53,7 @@ class ChangeLog(BaseModel):
     class Config:
         json_schema_extra = {
             "example": {
-                "book_id": "https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html",
+                "book_source_url": "https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html",
                 "book_name": "A Light in the Attic",
                 "change_type": "updated",
                 "changes": {
@@ -74,7 +74,7 @@ class ChangeLog(BaseModel):
 
 class ChangeLogCreate(BaseModel):
     """Model for creating a new changelog entry"""
-    book_id: str
+    book_source_url: str
     book_name: str
     change_type: ChangeType
     changes: Optional[dict[str, FieldChange]] = None
@@ -84,7 +84,7 @@ class ChangeLogCreate(BaseModel):
 class ChangeLogResponse(BaseModel):
     """Model for API responses """
     id: str
-    book_id: str
+    book_source_url: str
     book_name: str
     change_type: str
     changes: Optional[dict[str, FieldChange]]

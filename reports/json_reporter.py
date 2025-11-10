@@ -55,7 +55,7 @@ def generate_json_report(
     # Add all changelogs
     for changelog in changelogs:
         change_entry = {
-            "book_id": changelog.get("book_id"),
+            "book_source_url": changelog.get("book_source_url"),
             "book_name": changelog.get("book_name"),
             "change_type": changelog.get("change_type"),
             "changes": changelog.get("changes"),

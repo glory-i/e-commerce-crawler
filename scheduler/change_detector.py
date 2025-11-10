@@ -72,7 +72,7 @@ def compare_content_hashes(old_book: dict, new_book_data: dict) -> bool:
 
 
 def build_changelog_entry(
-    book_id: str,
+    book_source_url: str,
     book_name: str,
     change_type: ChangeType,
     changes: Optional[dict],
@@ -82,7 +82,7 @@ def build_changelog_entry(
     Build a changelog entry dictionary ready for database insertion
     
     Args:
-        book_id: Book source URL
+        book_source_url: Book source URL
         book_name: Book name
         change_type: "added" or "updated"
         changes: Dictionary of field changes, or None for new books
@@ -92,7 +92,7 @@ def build_changelog_entry(
         Changelog entry dictionary
     """
     changelog_entry = {
-        'book_id': book_id,
+        'book_source_url': book_source_url,
         'book_name': book_name,
         'change_type': change_type.value if isinstance(change_type, ChangeType) else change_type,
         'changes': changes,

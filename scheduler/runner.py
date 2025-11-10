@@ -63,7 +63,7 @@ async def process_new_books(
             if success:
                 # Create changelog entry for new book
                 changelog = build_changelog_entry(
-                    book_id=book_data['source_url'],
+                    book_source_url=book_data['source_url'],
                     book_name=book_data['name'],
                     change_type=ChangeType.ADDED,
                     changes=None,
@@ -147,7 +147,7 @@ async def process_existing_books(
                     
                     # Create changelog entry
                     changelog = build_changelog_entry(
-                        book_id=url,
+                        book_source_url=url,
                         book_name=new_book_data['name'],
                         change_type=ChangeType.UPDATED,
                         changes=changes,

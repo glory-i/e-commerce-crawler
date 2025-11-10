@@ -55,7 +55,7 @@ def generate_csv_report(
                 book_name = changelog.get("book_name", "Unknown")
                 change_type = changelog.get("change_type", "unknown")
                 changed_at = changelog.get("changed_at")
-                book_url = changelog.get("book_id", "")
+                book_url = changelog.get("book_source_url", "")
                 
                 # Format changed_at
                 if isinstance(changed_at, datetime):

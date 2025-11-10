@@ -195,7 +195,8 @@ async def create_changelog_indexes(db: AsyncIOMotorDatabase):
         await db.changelogs.create_index('detection_run_id')
         await db.changelogs.create_index('change_type')
         await db.changelogs.create_index([('changed_at', -1)])
-        await db.changelogs.create_index('book_id')
+        # await db.changelogs.create_index('book_id')
+        await db.changelogs.create_index('book_source_url')
         await db.changelogs.create_index([('detection_run_id', 1), ('change_type', 1)])
         
         logger.info("Created changelog indexes")

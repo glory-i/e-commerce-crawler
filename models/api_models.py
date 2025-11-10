@@ -71,7 +71,7 @@ class BookListResponse(BaseModel):
 
 class APIChangeResponse(BaseModel):
     """Response model for change log entry"""
-    book_id: str
+    book_source_url: str
     book_name: str
     change_type: str
     changes: Optional[dict] = None
@@ -81,7 +81,7 @@ class APIChangeResponse(BaseModel):
     class Config:
         json_schema_extra = {
             "example": {
-                "book_id": "https://books.toscrape.com/catalogue/book_123/index.html",
+                "book_source_url": "https://books.toscrape.com/catalogue/book_123/index.html",
                 "book_name": "A Light in the Attic",
                 "change_type": "updated",
                 "changes": {
