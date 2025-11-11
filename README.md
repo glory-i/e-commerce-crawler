@@ -106,7 +106,7 @@ Choose **one** of the following three approaches:
    MONGODB_URI=mongodb://localhost:27017
 ```
 
-5. **Install MongoDB Compass (Recommended - GUI Tool):**
+5. **Install MongoDB Compass ( GUI Tool):**
    
    MongoDB Compass provides a visual interface to interact with your database, making it easier to view collections, documents, and run queries.
    

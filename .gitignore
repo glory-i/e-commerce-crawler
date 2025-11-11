@@ -29,8 +29,7 @@ test_retry.py
 
 # Reports
 reports/output/
-*.json
-*.csv
+
 
 
 # Pytest
