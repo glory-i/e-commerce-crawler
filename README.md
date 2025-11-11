@@ -406,31 +406,6 @@ pytest --cov=crawler --cov=scheduler --cov=api
 
 ---
 
-## 📅 Setting Up Daily Scheduler (Production)
-
-The scheduler is configured to run automatically at 2:00 AM daily. To enable continuous operation:
-
-### Option 1: Keep Script Running
-```bash
-# Run in foreground
-python -m scheduler.runner
-
-# Or run in background (Linux/macOS)
-nohup python -m scheduler.runner &
-```
-
-The script will keep running and execute the crawl at the scheduled time daily.
-
-### Option 2: System Service (Linux)
-
-Create a systemd service for automatic startup and better process management.
-
-### Option 3: Docker Container
-
-Run the scheduler as a long-lived Docker container for isolation and easy deployment.
-
----
-
 ## 🔍 Verification Checklist
 
 Ensure everything is working:
