@@ -15,6 +15,487 @@ This project demonstrates enterprise-level Python development practices through 
 
 ---
 
+## 🚀 Setup Instructions
+
+Follow these steps to set up and run the project on your local machine.
+
+### Prerequisites
+
+Before you begin, ensure you have the following installed:
+- **Python 3.12.6** (or compatible 3.12.x version)
+- **MongoDB** (local installation, Docker, or MongoDB Atlas account)
+- **Git** (for cloning the repository)
+- A **Gmail account** (for email notifications)
+
+---
+
+### Step 1: Clone the Repository
+```bash
+git clone <your-repository-url>
+cd ECommerceCrawler
+```
+
+---
+
+### Step 2: Create Python Virtual Environment
+
+Create and activate a virtual environment to isolate project dependencies:
+
+**On Windows:**
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+```
+
+**On macOS/Linux:**
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
+
+You should see `(.venv)` prefix in your terminal, indicating the virtual environment is active.
+
+---
+
+### Step 3: Install Dependencies
+
+Install all required Python packages from `requirements.txt`:
+```bash
+pip install -r requirements.txt
+```
+
+This will install all libraries with their specific versions as used in development.
+
+---
+
+### Step 4: Set Up MongoDB
+
+Choose **one** of the following three approaches:
+
+#### **Option A: Local MongoDB Installation** (Recommended for development)
+
+1. **Download and install MongoDB Community Server:**
+   - Visit: https://www.mongodb.com/try/download/community
+   - Follow installation instructions for your operating system
+
+2. **Start MongoDB service:**
+   
+   **Windows:**
+```bash
+   net start MongoDB
+```
+   
+   **macOS (using Homebrew):**
+```bash
+   brew services start mongodb-community
+```
+   
+   **Linux:**
+```bash
+   sudo systemctl start mongod
+```
+
+3. **Verify MongoDB is running:**
+```bash
+   mongosh
+   # Should connect to mongodb://localhost:27017
+```
+
+4. **Your connection string will be:**
+```
+   MONGO_URI=mongodb://localhost:27017
+```
+
+#### **Option B: MongoDB Atlas** (Cloud-hosted, free tier available)
+
+1. **Create a free account:**
+   - Visit: https://www.mongodb.com/cloud/atlas/register
+   - Sign up for a free account
+
+2. **Create a cluster:**
+   - Choose the free tier (M0)
+   - Select a cloud provider and region closest to you
+
+3. **Set up database access:**
+   - Go to "Database Access" → Create a database user
+   - Set username and password (save these!)
+   - Grant "Read and write to any database" permissions
+
+4. **Configure network access:**
+   - Go to "Network Access" → Add IP Address
+   - For development, you can use `0.0.0.0/0` (allow from anywhere)
+   - **Note:** Restrict this in production!
+
+5. **Get your connection string:**
+   - Click "Connect" on your cluster
+   - Choose "Connect your application"
+   - Copy the connection string (looks like: `mongodb+srv://username:password@cluster.xxxxx.mongodb.net/`)
+   - Replace `<password>` with your database user password
+
+6. **Your connection string will be:**
+```
+   MONGO_URI=mongodb+srv://username:password@cluster.xxxxx.mongodb.net/ecommerce_crawler?retryWrites=true&w=majority
+```
+
+#### **Option C: MongoDB with Docker** (Containerized approach)
+
+1. **Install Docker Desktop:**
+   - Visit: https://www.docker.com/products/docker-desktop
+
+2. **Run MongoDB container:**
+```bash
+   docker run -d \
+     --name mongodb \
+     -p 27017:27017 \
+     -e MONGO_INITDB_ROOT_USERNAME=admin \
+     -e MONGO_INITDB_ROOT_PASSWORD=password123 \
+     mongo:latest
+```
+
+3. **Verify container is running:**
+```bash
+   docker ps
+   # Should show mongodb container running
+```
+
+4. **Your connection string will be:**
+```
+   MONGO_URI=mongodb://admin:password123@localhost:27017/ecommerce_crawler?authSource=admin
+```
+
+5. **To stop MongoDB later:**
+```bash
+   docker stop mongodb
+```
+
+6. **To start MongoDB again:**
+```bash
+   docker start mongodb
+```
+
+---
+
+### Step 5: Configure Environment Variables
+
+1. **Copy the example environment file:**
+```bash
+   cp .env.example .env
+```
+
+2. **Open `.env` file in your text editor and configure the following:**
+
+#### MongoDB Configuration
+```env
+# Use the connection string from your chosen MongoDB setup (Step 4)
+MONGO_URI=mongodb://localhost:27017
+MONGO_DB_NAME=ecommerce_crawler
+```
+
+#### Email Configuration (for scheduler notifications)
+
+You'll need a Gmail account and an **App Password** (not your regular Gmail password):
+
+**Generate Gmail App Password:**
+1. Go to: https://myaccount.google.com/apppasswords
+2. Sign in to your Google account
+3. Under "Select app", choose "Mail"
+4. Under "Select device", choose "Other" and enter "ECommerceCrawler"
+5. Click "Generate"
+6. Copy the 16-character password (spaces don't matter)
+
+**Add to `.env`:**
+```env
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your-email@gmail.com
+SMTP_PASSWORD=your-16-char-app-password
+EMAIL_FROM=your-email@gmail.com
+EMAIL_TO=recipient-email@gmail.com
+```
+
+#### Scheduler Configuration
+```env
+SCHEDULER_TIMEZONE=Africa/Lagos  # Or your timezone
+SCHEDULER_HOUR=2                 # Hour to run daily (0-23)
+SCHEDULER_MINUTE=0               # Minute to run (0-59)
+```
+
+---
+
+### Step 6: Generate API Keys
+
+The API requires authentication via API keys. Generate them using the provided script:
+```bash
+python generate_api_keys.py
+```
+
+**Output example:**
+```
+Generated API Keys (copy these to your .env file):
+sk_abc123def456ghi789jkl012mno345pqr,sk_xyz987wvu654tsr321qpo098nml876kji
+```
+
+**Add to `.env`:**
+```env
+# Comma-separated list of API keys
+API_KEYS=sk_abc123def456ghi789jkl012mno345pqr,sk_xyz987wvu654tsr321qpo098nml876kji
+```
+
+**Important:** Keep these keys secret! Never commit them to Git.
+
+---
+
+### Step 7: Verify Setup
+
+Your `.env` file should now look similar to this:
+```env
+# MongoDB
+MONGO_URI=mongodb://localhost:27017
+MONGO_DB_NAME=ecommerce_crawler
+
+# Email (Gmail)
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your-email@gmail.com
+SMTP_PASSWORD=abcd efgh ijkl mnop  # App password
+EMAIL_FROM=your-email@gmail.com
+EMAIL_TO=your-email@gmail.com
+
+# Scheduler
+SCHEDULER_TIMEZONE=Africa/Lagos
+SCHEDULER_HOUR=2
+SCHEDULER_MINUTE=0
+
+# API Keys
+API_KEYS=sk_abc123...,sk_xyz987...
+```
+
+---
+
+## 🧪 Running the Application
+
+Now that setup is complete, you can run the different components:
+
+### 1. Run the Web Crawler
+
+Crawl all books from books.toscrape.com and store them in MongoDB:
+```bash
+python -m crawler.main
+```
+
+**Expected output:**
+```
+INFO - Starting async crawl...
+INFO - Found 1000 books to crawl
+INFO - Processing batch 1/20 (50 books)
+...
+INFO - ASYNC CRAWL COMPLETE
+INFO - Total books processed: 1000
+INFO - Duration: 215.43 seconds (3.59 minutes)
+```
+
+**What happens:**
+- Discovers all 1000 books across 50 pages
+- Crawls concurrently (10 books at a time)
+- Stores data in MongoDB `books` collection
+- Creates indexes for efficient querying
+
+---
+
+### 2. Run the Scheduler (Manual Test)
+
+Before setting up the daily scheduler, test it manually:
+```bash
+python -m scheduler.runner
+```
+
+**Expected output:**
+```
+INFO - Starting scheduled crawl...
+INFO - Detecting changes...
+INFO - Found 0 new books, 0 updates
+INFO - Generating reports...
+INFO - Sending email notification...
+INFO - Crawl complete!
+```
+
+**What happens:**
+- Re-crawls the website
+- Detects new books or changes
+- Generates JSON and CSV reports in `reports/output/`
+- Sends email with reports attached
+
+**Tip:** To test change detection, first run the command below to simulate price changes:
+```bash
+python test_with_changes.py
+```
+
+This script creates fake price updates in MongoDB. Then run the scheduler again:
+```bash
+python -m scheduler.runner
+```
+
+You should now see changes detected and receive an email with the change report!
+
+---
+
+### 3. Run the FastAPI Server
+
+Start the REST API server:
+```bash
+python -m api.main
+```
+
+**Expected output:**
+```
+INFO - Application startup complete.
+INFO - Uvicorn running on http://0.0.0.0:8000
+```
+
+**Access the API:**
+- **Swagger UI (Interactive Docs):** http://localhost:8000/docs
+- **ReDoc (Alternative Docs):** http://localhost:8000/redoc
+- **OpenAPI JSON Schema:** http://localhost:8000/openapi.json
+
+---
+
+### 4. Test API Endpoints
+
+#### Using Swagger UI (Recommended for beginners)
+
+1. **Open browser:** http://localhost:8000/docs
+2. **Authorize with API Key:**
+   - Click the "Authorize" button (🔒 icon at top right)
+   - Enter one of your API keys (from `.env`)
+   - Click "Authorize"
+
+3. **Try the endpoints:**
+   - `GET /books` - List all books with filters
+   - `GET /books/{book_id}` - Get specific book details
+   - `GET /changes` - View changelog history
+
+#### Using cURL (Command line)
+```bash
+# Get all books (first page)
+curl -X GET "http://localhost:8000/books?page=1&page_size=10" \
+  -H "X-API-Key: your-api-key-here"
+
+# Filter books by category and price
+curl -X GET "http://localhost:8000/books?category=Fiction&min_price=10&max_price=30" \
+  -H "X-API-Key: your-api-key-here"
+
+# Get specific book by ID
+curl -X GET "http://localhost:8000/books/{book_id}" \
+  -H "X-API-Key: your-api-key-here"
+
+# Get recent changes
+curl -X GET "http://localhost:8000/changes?page=1&page_size=20" \
+  -H "X-API-Key: your-api-key-here"
+```
+
+---
+
+## 🧪 Running Tests
+
+Execute the test suite to verify everything works:
+```bash
+# Run all tests
+pytest
+
+# Run with verbose output
+pytest -v
+
+# Run specific test file
+pytest tests/test_crawler.py
+
+# Run with coverage report
+pytest --cov=crawler --cov=scheduler --cov=api
+```
+
+---
+
+## 📅 Setting Up Daily Scheduler (Production)
+
+The scheduler is configured to run automatically at 2:00 AM daily. To enable continuous operation:
+
+### Option 1: Keep Script Running
+```bash
+# Run in foreground
+python -m scheduler.runner
+
+# Or run in background (Linux/macOS)
+nohup python -m scheduler.runner &
+```
+
+The script will keep running and execute the crawl at the scheduled time daily.
+
+### Option 2: System Service (Linux)
+
+Create a systemd service for automatic startup and better process management.
+
+### Option 3: Docker Container
+
+Run the scheduler as a long-lived Docker container for isolation and easy deployment.
+
+---
+
+## 🔍 Verification Checklist
+
+Ensure everything is working:
+
+- [ ] Virtual environment activated (`.venv`)
+- [ ] All dependencies installed (`pip list` shows required packages)
+- [ ] MongoDB running and accessible
+- [ ] `.env` file configured with all required variables
+- [ ] API keys generated and added to `.env`
+- [ ] Gmail app password configured correctly
+- [ ] Crawler completes successfully (1000 books in ~3-4 minutes)
+- [ ] MongoDB contains `books` collection with data
+- [ ] Scheduler runs without errors
+- [ ] Email notification received (after scheduler run)
+- [ ] FastAPI server starts successfully
+- [ ] Swagger UI accessible at http://localhost:8000/docs
+- [ ] API endpoints return data with valid API key
+
+---
+
+## 🚨 Common Issues & Troubleshooting
+
+### Issue: "ModuleNotFoundError"
+**Solution:** Ensure virtual environment is activated and dependencies installed:
+```bash
+source .venv/bin/activate  # or .venv\Scripts\activate on Windows
+pip install -r requirements.txt
+```
+
+### Issue: "Failed to connect to MongoDB"
+**Solution:** 
+- Verify MongoDB is running: `mongosh` (should connect successfully)
+- Check `MONGO_URI` in `.env` matches your MongoDB setup
+- For Atlas: Ensure IP address is whitelisted in Network Access
+
+### Issue: "Email not sending"
+**Solution:**
+- Verify you're using Gmail App Password, not regular password
+- Check SMTP settings in `.env`
+- Ensure "Less secure app access" is NOT enabled (use App Password instead)
+
+### Issue: "API returns 401 Unauthorized"
+**Solution:**
+- Check API key is in `.env` under `API_KEYS`
+- Ensure you're sending the key in header: `X-API-Key: your-key-here`
+- Verify API server is reading `.env` correctly
+
+### Issue: "Crawler is slow"
+**Solution:**
+- Check `max_concurrent_requests` in `config/crawler_config.py`
+- Increase if your network can handle it (try 15-20)
+- Verify network connection is stable
+
+
+
+---
+
 ##  Architecture & Technical Approach
 
 ### Part 1: Robust Web Crawler
