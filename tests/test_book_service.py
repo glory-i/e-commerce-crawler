@@ -79,5 +79,5 @@ async def test_pagination_total_pages(db):
     """Test pagination calculates total pages correctly"""
     result = await BookService.get_books(db, page=1, page_size=50)
     
-    expected_pages = (result['total'] + 49) // 50  # Ceiling division
+    expected_pages = (result['total'] + 49) // 50  
     assert result['total_pages'] == expected_pages

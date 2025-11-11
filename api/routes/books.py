@@ -69,7 +69,7 @@ async def get_books(
         # Validate price range
         if min_price is not None and max_price is not None and min_price > max_price:
             raise HTTPException(
-                status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
                 detail="min_price cannot be greater than max_price"
             )
         

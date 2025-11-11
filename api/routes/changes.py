@@ -75,14 +75,14 @@ async def get_changes(
         # Validate change_type
         if change_type and change_type.lower() not in ['added', 'updated']:
             raise HTTPException(
-                status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
                 detail="change_type must be 'added' or 'updated'"
             )
         
         # Validate date range
         if start_date and end_date and start_date > end_date:
             raise HTTPException(
-                status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
                 detail="start_date cannot be after end_date"
             )
         
