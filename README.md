@@ -1,6 +1,6 @@
 #  Web Crawler & API System
 
-A production-grade Python web scraping and monitoring system for [books.toscrape.com](https://books.toscrape.com) - featuring async concurrent crawling, intelligent change detection, and a secure REST API with comprehensive test coverage.
+A Python web scraping and monitoring system for [books.toscrape.com](https://books.toscrape.com) - featuring async concurrent crawling, intelligent change detection, and a secure REST API with comprehensive test coverage.
 
 ---
 
@@ -95,7 +95,6 @@ if old_hash != new_hash:
 - **APScheduler Integration**: Cron-based scheduling (default: 2:00 AM daily)
 - **Graceful Shutdown**: Proper cleanup of database connections and async resources
 - **Configurable Frequency**: Easy modification of schedule without code changes
-- **Missed Execution Handling**: Built-in coalescing to prevent duplicate runs
 
 #### Reporting & Notifications
 - **Dual Format Reports**: Generates both JSON and CSV  formats
@@ -173,7 +172,7 @@ api/
 | **MongoDB + Motor** | NoSQL database | Flexible schema for varying book data, Motor provides async database operations matching our async crawler |
 | **Pydantic** | Data validation | Type safety, automatic validation, clear error messages, perfect for API contracts and database schemas |
 | **tenacity** | Retry logic | Declarative retry policies with exponential backoff, cleaner than manual retry loops |
-| **APScheduler** | Task scheduling | Pythonic cron-like scheduling, supports async jobs, easier than Celery for single-machine deployments |
+| **APScheduler** | Task scheduling | Pythonic cron-like scheduling, supports async jobs |
 | **FastAPI** | REST API framework | Automatic OpenAPI docs, async support, dependency injection, fast performance |
 | **SlowAPI** | Rate limiting | Simple integration with FastAPI, flexible rate limit strategies |
 | **pytest + pytest-asyncio** | Testing | Async test support, fixture-based testing, comprehensive assertion library |
@@ -204,7 +203,7 @@ for batch in batches:
 ECommerceCrawler/
 ├── .env.example                 # Environment configuration template
 ├── requirements.txt             # Python dependencies with versions
-├── generate-api-keys.py         # Utility to generate API keys
+├── generate_api_keys.py         # Utility to generate API keys
 │
 ├── config/
 │   ├── __init__.py
@@ -222,17 +221,12 @@ ECommerceCrawler/
 │   ├── __init__.py
 │   ├── main.py                  # Entry point for crawler execution
 │   ├── async_scraper.py         # Async book scraping logic
-│   ├── url_extractor.py         # Pagination and URL collection
-│   └── utils/
-│       ├── db_helpers.py        # Database operations (insert, update, dedup)
-│       └── html_helpers.py      # HTML parsing utilities
 │
 ├── scheduler/
 │   ├── __init__.py
-│   ├── runner.py                # APScheduler job runner
+│   ├── runner.py                
+│   ├── main.py                  
 │   ├── change_detector.py       # Change detection logic
-│   ├── report_generator.py      # JSON/CSV report creation
-│   └── email_notifier.py        # SMTP email sending
 │
 ├── api/
 │   ├── __init__.py
@@ -249,12 +243,8 @@ ECommerceCrawler/
 ├── tests/
 │   ├── __init__.py
 │   ├── conftest.py              # Pytest fixtures
-│   ├── test_crawler.py          # Crawler unit tests
-│   ├── test_scheduler.py        # Scheduler tests
-│   └── test_api.py              # API endpoint tests
+│   ├── test_api_endpoints.py    # Api endpoints unit tests
 │
-├── reports/
-│   └── output/                  # Generated daily reports (JSON/CSV)
 │
 └── submission/
     ├── document_structure/      # Sample MongoDB documents
