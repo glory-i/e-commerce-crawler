@@ -23,7 +23,7 @@ Follow these steps to set up and run the project on your local machine.
 
 Before you begin, ensure you have the following installed:
 - **Python 3.12.6** (or compatible 3.12.x version)
-- **MongoDB** (local installation, Docker, or MongoDB Atlas account)
+- **MongoDB** (local installation, or MongoDB Atlas account)
 - **Git** (for cloning the repository)
 - A **Gmail account** (for email notifications)
 
@@ -155,41 +155,6 @@ Choose **one** of the following three approaches:
    MONGODB_URI=mongodb+srv://username:password@cluster.xxxxx.mongodb.net/ecommerce_crawler?retryWrites=true&w=majority
 ```
 
-#### **Option C: MongoDB with Docker** (Containerized approach)
-
-1. **Install Docker Desktop:**
-   - Visit: https://www.docker.com/products/docker-desktop
-
-2. **Run MongoDB container:**
-```bash
-   docker run -d \
-     --name mongodb \
-     -p 27017:27017 \
-     -e MONGO_INITDB_ROOT_USERNAME=admin \
-     -e MONGO_INITDB_ROOT_PASSWORD=password123 \
-     mongo:latest
-```
-
-3. **Verify container is running:**
-```bash
-   docker ps
-   # Should show mongodb container running
-```
-
-4. **Your connection string will be:**
-```
-   MONGODB_URI=mongodb://admin:password123@localhost:27017/ecommerce_crawler?authSource=admin
-```
-
-5. **To stop MongoDB later:**
-```bash
-   docker stop mongodb
-```
-
-6. **To start MongoDB again:**
-```bash
-   docker start mongodb
-```
 
 ---
 
