@@ -31,7 +31,7 @@ Before you begin, ensure you have the following installed:
 
 ### Step 1: Clone the Repository
 ```bash
-git clone https://github.com/glory-i/e-commerce-crawler
+git clone https://github.com/glory-i/e-commerce-crawler.git
 cd ECommerceCrawler
 ```
 
