@@ -103,7 +103,7 @@ Choose **one** of the following three approaches:
 
 4. **Your connection string will be:**
 ```
-   MONGO_URI=mongodb://localhost:27017
+   MONGODB_URI=mongodb://localhost:27017
 ```
 
 #### **Option B: MongoDB Atlas** (Cloud-hosted, free tier available)
@@ -134,7 +134,7 @@ Choose **one** of the following three approaches:
 
 6. **Your connection string will be:**
 ```
-   MONGO_URI=mongodb+srv://username:password@cluster.xxxxx.mongodb.net/ecommerce_crawler?retryWrites=true&w=majority
+   MONGODB_URI=mongodb+srv://username:password@cluster.xxxxx.mongodb.net/ecommerce_crawler?retryWrites=true&w=majority
 ```
 
 #### **Option C: MongoDB with Docker** (Containerized approach)
@@ -160,7 +160,7 @@ Choose **one** of the following three approaches:
 
 4. **Your connection string will be:**
 ```
-   MONGO_URI=mongodb://admin:password123@localhost:27017/ecommerce_crawler?authSource=admin
+   MONGODB_URI=mongodb://admin:password123@localhost:27017/ecommerce_crawler?authSource=admin
 ```
 
 5. **To stop MongoDB later:**
@@ -187,8 +187,8 @@ Choose **one** of the following three approaches:
 #### MongoDB Configuration
 ```env
 # Use the connection string from your chosen MongoDB setup (Step 4)
-MONGO_URI=mongodb://localhost:27017
-MONGO_DB_NAME=ecommerce_crawler
+MONGODB_URI=mongodb://localhost:27017
+MONGODB_DB_NAME=ecommerce_crawler
 ```
 
 #### Email Configuration (for scheduler notifications)
@@ -245,8 +245,8 @@ API_KEYS=key_EMGt8*****,key_EMGt9*****
 Your `.env` file should now look similar to this:
 ```env
 # MongoDB
-MONGO_URI=mongodb://localhost:27017
-MONGO_DB_NAME=ecommerce_crawler
+MONGODB_URI=mongodb://localhost:27017
+MONGODB_DB_NAME=ecommerce_crawler
 
 # Email (Gmail)
 SMTP_HOST=smtp.gmail.com
@@ -438,7 +438,7 @@ pip install -r requirements.txt
 ### Issue: "Failed to connect to MongoDB"
 **Solution:** 
 - Verify MongoDB is running: `mongosh` (should connect successfully)
-- Check `MONGO_URI` in `.env` matches your MongoDB setup
+- Check `MONGODB_URI` in `.env` matches your MongoDB setup
 - For Atlas: Ensure IP address is whitelisted in Network Access
 
 ### Issue: "Email not sending"
