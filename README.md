@@ -213,12 +213,7 @@ EMAIL_FROM=your-email@gmail.com
 EMAIL_TO=recipient-email@gmail.com
 ```
 
-#### Scheduler Configuration
-```env
-SCHEDULER_TIMEZONE=Africa/Lagos  # Or your timezone
-SCHEDULER_HOUR=2                 # Hour to run daily (0-23)
-SCHEDULER_MINUTE=0               # Minute to run (0-59)
-```
+
 
 ---
 
@@ -232,13 +227,13 @@ python generate_api_keys.py
 **Output example:**
 ```
 Generated API Keys (copy these to your .env file):
-sk_abc123def456ghi789jkl012mno345pqr,sk_xyz987wvu654tsr321qpo098nml876kji
+key_EMGt8*****,key_EMGt9*****
 ```
 
 **Add to `.env`:**
 ```env
 # Comma-separated list of API keys
-API_KEYS=sk_abc123def456ghi789jkl012mno345pqr,sk_xyz987wvu654tsr321qpo098nml876kji
+API_KEYS=key_EMGt8*****,key_EMGt9*****
 ```
 
 **Important:** Keep these keys secret! Never commit them to Git.
@@ -261,13 +256,10 @@ SMTP_PASSWORD=abcd efgh ijkl mnop  # App password
 EMAIL_FROM=your-email@gmail.com
 EMAIL_TO=your-email@gmail.com
 
-# Scheduler
-SCHEDULER_TIMEZONE=Africa/Lagos
-SCHEDULER_HOUR=2
-SCHEDULER_MINUTE=0
+
 
 # API Keys
-API_KEYS=sk_abc123...,sk_xyz987...
+API_KEYS=key_EMGt8*****,key_EMGt9*****
 ```
 
 ---
@@ -406,7 +398,7 @@ pytest
 pytest -v
 
 # Run specific test file
-pytest tests/test_crawler.py
+pytest tests/test_api_endpoints.py
 
 # Run with coverage report
 pytest --cov=crawler --cov=scheduler --cov=api
