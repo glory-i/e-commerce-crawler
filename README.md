@@ -205,12 +205,12 @@ You'll need a Gmail account and an **App Password** (not your regular Gmail pass
 
 **Add to `.env`:**
 ```env
-SMTP_HOST=smtp.gmail.com
+SMTP_SERVER=smtp.gmail.com
 SMTP_PORT=587
-SMTP_USER=your-email@gmail.com
+SMTP_USERNAME=your-email@gmail.com
 SMTP_PASSWORD=your-16-char-app-password
-EMAIL_FROM=your-email@gmail.com
-EMAIL_TO=recipient-email@gmail.com
+EMAIL_FROM_NAME=your-email@gmail.com
+ALERT_EMAIL=recipient-email@gmail.com
 ```
 
 
@@ -249,12 +249,12 @@ MONGODB_URI=mongodb://localhost:27017
 MONGODB_DB_NAME=ecommerce_crawler
 
 # Email (Gmail)
-SMTP_HOST=smtp.gmail.com
+SMTP_SERVER=smtp.gmail.com
 SMTP_PORT=587
-SMTP_USER=your-email@gmail.com
+SMTP_USERNAME=your-email@gmail.com
 SMTP_PASSWORD=abcd efgh ijkl mnop  # App password
-EMAIL_FROM=your-email@gmail.com
-EMAIL_TO=your-email@gmail.com
+EMAIL_FROM_NAME=your-email@gmail.com
+ALERT_EMAIL=Recipient-email@gmail.com
 
 
 
