@@ -562,7 +562,7 @@ api/
 #### Security Implementation
 - **API Key Authentication**: Header-based authentication (`X-API-Key`) with database validation
 - **Rate Limiting**: `SlowAPI` integration (100 requests/hour per API key)
-- **Environment-Based Secrets**: API keys stored in `.env` with fallback to database
+- **Environment and Database-Based Secrets**: API keys stored in `.env` with fallback to database api keys
 - **Key Management Endpoints**: CRUD operations for API key administration
 
 ####  Query Capabilities
@@ -581,7 +581,7 @@ api/
 - Change type filtering (new_book, update, deleted)
 - Pagination support
 
-**POST `/api-keys`** - Generate new API keys (authenticated)
+**POST `/api-keys`** - Generate new API keys 
 
 #### API Documentation
 - **OpenAPI/Swagger UI**: Auto-generated interactive documentation at `/docs`
