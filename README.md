@@ -72,7 +72,7 @@ This will install all libraries with their specific versions as used in developm
 
 Choose **one** of the following three approaches:
 
-#### **Option A: Local MongoDB Installation** (Recommended for development)
+#### **Option A: Local MongoDB Installation** (Recommended )
 
 1. **Download and install MongoDB Community Server:**
    - Visit: https://www.mongodb.com/try/download/community
@@ -105,6 +105,24 @@ Choose **one** of the following three approaches:
 ```
    MONGODB_URI=mongodb://localhost:27017
 ```
+
+5. **Install MongoDB Compass (Recommended - GUI Tool):**
+   
+   MongoDB Compass provides a visual interface to interact with your database, making it easier to view collections, documents, and run queries.
+   
+   - **Download:** https://www.mongodb.com/try/download/compass
+   - Install and launch MongoDB Compass
+   - **Connect to your local database:**
+     - Connection string: `mongodb://localhost:27017`
+     - Click "Connect"
+   
+   **What you can do with Compass:**
+   - Browse the `ecommerce_crawler` database
+   - View documents in the `books` and `changelogs` collections
+   - Run queries and filters visually
+   - Monitor database performance
+   - Create and manage indexes
+
 
 #### **Option B: MongoDB Atlas** (Cloud-hosted, free tier available)
 
@@ -353,7 +371,7 @@ INFO - Uvicorn running on http://0.0.0.0:8000
 
 ### 4. Test API Endpoints
 
-#### Using Swagger UI (Recommended for beginners)
+#### Using Swagger UI (Recommended)
 
 1. **Open browser:** http://localhost:8000/docs
 2. **Authorize with API Key:**
