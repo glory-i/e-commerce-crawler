@@ -70,7 +70,7 @@ This will install all libraries with their specific versions as used in developm
 
 ### Step 4: Set Up MongoDB
 
-Choose **one** of the following three approaches:
+Choose **one** of the following  approaches:
 
 #### **Option A: Local MongoDB Installation** (Recommended )
 
@@ -495,8 +495,6 @@ The crawler implements web scraping with enterprise patterns:
 - `category` - Category filtering in API
 - `price_incl_tax` - Price range queries
 - `rating` - Rating-based filtering
-- `content_hash` - Fast change detection (O(1) hash comparison)
-- `crawled_at` (descending) - Temporal queries
 
 ---
 
