@@ -17,8 +17,7 @@ venv/
 
 # Logs and data
 *.log
-*.csv
-*.json
+
 *.db
 .DS_Store
 
