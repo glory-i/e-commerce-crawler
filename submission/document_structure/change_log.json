@@ -1,0 +1,22 @@
+{
+  "_id": {
+    "$oid": "69121ee40c42d808c231be08"
+  },
+  "book_source_url": "https://books.toscrape.com/catalogue/a-gathering-of-shadows-shades-of-magic-2_456/index.html",
+  "book_name": "A Gathering of Shadows (Shades of Magic #2)",
+  "change_type": "updated",
+  "changes": {
+    "price_incl_tax": {
+      "old": 99.99,
+      "new": 44.81
+    },
+    "price_excl_tax": {
+      "old": 99.99,
+      "new": 44.81
+    }
+  },
+  "changed_at": {
+    "$date": "2025-11-10T17:20:36.963Z"
+  },
+  "detection_run_id": "run_2025-11-10_18:20:00"
+}

@@ -1,5 +1,5 @@
 #Pydantic model for Book 
-from pydantic import BaseModel, Field, HttpUrl, field_validator
+from pydantic import BaseModel, Field, HttpUrl, field_validator, ConfigDict
 from typing import Optional
 from datetime import datetime,  UTC, timezone, timedelta
 from enum import Enum
@@ -39,8 +39,10 @@ class BookModel(BaseModel):
     content_hash: str = Field(..., min_length=32, max_length=64)
     raw_html_snapshot: Optional[str] = Field(None)
     
-    class Config:
-        """Pydantic config"""
+    """Pydantic config"""
+
+    model_config = ConfigDict(
+        
         json_schema_extra = {
             "example": {
                 "name": "A Light in the Attic",
@@ -60,6 +62,7 @@ class BookModel(BaseModel):
                 "raw_html_snapshot": "<html>...</html>"
             }
         }
+    )
 
 
 class BookCreate(BaseModel):

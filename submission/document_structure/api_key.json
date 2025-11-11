@@ -1,0 +1,11 @@
+{
+  "_id": {
+    "$oid": "6912450cbfef19f1de670003"
+  },
+  "key_hash": "53807da77bd8c07bf8ce0f1359d21316a5a94a740b044b774d0ba77f4e46abf4",
+  "name": "Test Api key",
+  "created_at": {
+    "$date": "2025-11-10T20:03:24.896Z"
+  },
+  "is_active": true
+}

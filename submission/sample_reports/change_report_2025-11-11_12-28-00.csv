@@ -1,0 +1,20 @@
+Book Name,Change Type,Field Changed,Old Value,New Value,Changed At,Book URL
+The Year of Magical Thinking,Updated,price_incl_tax,99.99,43.04,2025-11-11 11:28:43,https://books.toscrape.com/catalogue/the-year-of-magical-thinking_770/index.html
+The Year of Magical Thinking,Updated,price_excl_tax,99.99,43.04,2025-11-11 11:28:43,https://books.toscrape.com/catalogue/the-year-of-magical-thinking_770/index.html
+Some Women,Updated,price_incl_tax,99.99,13.73,2025-11-11 11:28:43,https://books.toscrape.com/catalogue/some-women_341/index.html
+Some Women,Updated,price_excl_tax,99.99,13.73,2025-11-11 11:28:43,https://books.toscrape.com/catalogue/some-women_341/index.html
+Midnight Riot (Peter Grant/ Rivers of London - books #1),Updated,price_incl_tax,99.99,55.46,2025-11-11 11:28:44,https://books.toscrape.com/catalogue/midnight-riot-peter-grant-rivers-of-london-books-1_194/index.html
+Midnight Riot (Peter Grant/ Rivers of London - books #1),Updated,price_excl_tax,99.99,55.46,2025-11-11 11:28:44,https://books.toscrape.com/catalogue/midnight-riot-peter-grant-rivers-of-london-books-1_194/index.html
+
+SUMMARY
+Run ID,run_2025-11-11_12:28:00
+Duration (minutes),0.75
+Total Books on Site,1000
+New Books Added,0
+Books Updated,3
+Books Unchanged,997
+Errors,0
+
+FIELD CHANGE STATISTICS
+price_incl_tax,3
+price_excl_tax,3

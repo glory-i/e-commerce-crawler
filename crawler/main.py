@@ -9,12 +9,19 @@ from typing import List, Set
 from crawler.async_scraper import get_all_book_urls_async, scrape_multiple_books
 from config.database import get_async_db, db_config
 from config.crawler_config import CrawlerConfig, default_config
-from utilities.db_helpers import (
+
+# from utilities.db_helpers import (
+#     save_book_to_db, 
+#     create_indexes, 
+#     get_all_crawled_urls,
+#     get_crawl_statistics
+# )
+
+from repositories.book_repository import (
     save_book_to_db, 
     create_indexes, 
     get_all_crawled_urls,
-    get_crawl_statistics
-)
+    get_crawl_statistics)
 
 UTC_PLUS_1 = timezone(timedelta(hours=1))
 

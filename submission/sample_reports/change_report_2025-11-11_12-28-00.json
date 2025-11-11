@@ -1,0 +1,70 @@
+{
+  "summary": {
+    "run_id": "run_2025-11-11_12:28:00",
+    "started_at": "2025-11-11T12:28:00.010510+01:00",
+    "completed_at": "2025-11-11T12:28:44.748127+01:00",
+    "duration_seconds": 44.737617,
+    "duration_minutes": 0.75,
+    "total_books_on_site": 1000,
+    "total_books_in_db_before": 1000,
+    "total_books_in_db_after": 1000,
+    "new_books_added": 0,
+    "books_updated": 3,
+    "books_unchanged": 997,
+    "fields_changed": {
+      "price_incl_tax": 3,
+      "price_excl_tax": 3
+    },
+    "errors": 0
+  },
+  "changes": [
+    {
+      "book_source_url": "https://books.toscrape.com/catalogue/the-year-of-magical-thinking_770/index.html",
+      "book_name": "The Year of Magical Thinking",
+      "change_type": "updated",
+      "changes": {
+        "price_incl_tax": {
+          "old": 99.99,
+          "new": 43.04
+        },
+        "price_excl_tax": {
+          "old": 99.99,
+          "new": 43.04
+        }
+      },
+      "changed_at": "2025-11-11T11:28:43.109000"
+    },
+    {
+      "book_source_url": "https://books.toscrape.com/catalogue/some-women_341/index.html",
+      "book_name": "Some Women",
+      "change_type": "updated",
+      "changes": {
+        "price_incl_tax": {
+          "old": 99.99,
+          "new": 13.73
+        },
+        "price_excl_tax": {
+          "old": 99.99,
+          "new": 13.73
+        }
+      },
+      "changed_at": "2025-11-11T11:28:43.980000"
+    },
+    {
+      "book_source_url": "https://books.toscrape.com/catalogue/midnight-riot-peter-grant-rivers-of-london-books-1_194/index.html",
+      "book_name": "Midnight Riot (Peter Grant/ Rivers of London - books #1)",
+      "change_type": "updated",
+      "changes": {
+        "price_incl_tax": {
+          "old": 99.99,
+          "new": 55.46
+        },
+        "price_excl_tax": {
+          "old": 99.99,
+          "new": 55.46
+        }
+      },
+      "changed_at": "2025-11-11T11:28:44.342000"
+    }
+  ]
+}
